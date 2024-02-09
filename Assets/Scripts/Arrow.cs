@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int direction = 0;
+    [SerializeField] float speed = 10f;
+
+    public void ShootArrow(int dir)
     {
-        
+        direction = dir;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        gameObject.transform.position += 10 * direction * Vector3.right * Time.deltaTime;
     }
 }

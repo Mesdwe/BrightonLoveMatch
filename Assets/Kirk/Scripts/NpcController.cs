@@ -1,7 +1,5 @@
 // KHOGDEN
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 /*
     KH - NOTE: Feel free to read through or edit anything on this script,
@@ -54,14 +52,14 @@ public class NpcController : MonoBehaviour
         float d = Vector3.Distance(currentPos, destination);
 
         // KH - Calculate where the NPC is going to move.
-        if(d > 0.2f)
+        if (d > 0.2f)
         {
-            if(currentPos.x > destination.x)
+            if (currentPos.x > destination.x)
                 x = -moveSpeed;
             else
                 x = moveSpeed;
 
-            if(currentPos.y > destination.y)
+            if (currentPos.y > destination.y)
                 y = -moveSpeed;
             else
                 y = moveSpeed;
@@ -74,6 +72,6 @@ public class NpcController : MonoBehaviour
     // KH - Set the destination of the NPC.
     public void SetDestination(Vector2 newDestination)
     {
-        destination = d;
+        destination = newDestination;
     }
 }

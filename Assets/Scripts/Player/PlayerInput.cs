@@ -44,6 +44,11 @@ public class PlayerInput : MonoBehaviour
         {
             player.velocity = 0;
         }
+
+        if (Input.GetKeyDown(shootKey))
+        {
+            player.shoot = true;
+        }
         //
 
     }
