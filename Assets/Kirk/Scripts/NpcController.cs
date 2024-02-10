@@ -56,7 +56,7 @@ public class NpcController : MonoBehaviour
     // KH - Called upon the first frame.
     void Start()
     {
-
+        SetRandomDestination();
     }
 
     // KH - Called upon every frame.
@@ -66,21 +66,16 @@ public class NpcController : MonoBehaviour
         Move();
 
         // KH - Decrease timer until it reaches zero.
-        if(setNewDestinationTimer > 0f)
+        if (setNewDestinationTimer > 0f)
             setNewDestinationTimer -= Time.deltaTime;
-        else if(setNewDestinationTimer < 0f)
+        else if (setNewDestinationTimer < 0f)
             setNewDestinationTimer = 0f;
-        
-        // KH - Set a random destination for the NPC.
-        if(setNewDestinationTimer == 0f)
-        {
-            // KH - Reset the timer.
-            setNewDestinationTimer = setNewDestinationTime;
 
-            // KH - Set a new randomly made destination.
-            float x = Random.Range(xMoveSpace.min, xMoveSpace.max);
-            float y = Random.Range(yMoveSpace.min, yMoveSpace.max);
-            SetDestination(new Vector2(x, y));
+        // KH - Set a random destination for the NPC.
+        if (setNewDestinationTimer == 0f)
+        {
+            setNewDestinationTimer = setNewDestinationTime;
+            SetRandomDestination();
         }
     }
 
@@ -116,15 +111,24 @@ public class NpcController : MonoBehaviour
         destination = newDestination;
     }
 
+    // KH - Set a random destination based on move space.
+    public void SetRandomDestination()
+    {
+        // KH - Set a new randomly made destination.
+        float x = Random.Range(xMoveSpace.Min, xMoveSpace.Max);
+        float y = Random.Range(yMoveSpace.Min, yMoveSpace.Max);
+        SetDestination(new Vector2(x, y));
+    }
+
     public void SetHorizontalMoveSpace(float min, float max)
     {
-        xMoveSpace.min = min;
-        xMoveSpace.max = max;
+        xMoveSpace.Min = min;
+        xMoveSpace.Max = max;
     }
 
     public void SetVerticalMoveSpace(float min, float max)
     {
-        yMoveSpace.min = min;
-        yMoveSpace.max = max;
+        yMoveSpace.Min = min;
+        yMoveSpace.Max = max;
     }
 }

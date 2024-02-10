@@ -1,7 +1,5 @@
 // KHOGDEN
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 /*
     KH - NOTE: Feel free to read through or edit anything on this script,
@@ -46,13 +44,13 @@ public class NpcSpawn : MonoBehaviour
     void Update()
     {
         // KH - Continously decrease timer until it reaches zero.
-        if(spawnTimer > 0f)
+        if (spawnTimer > 0f)
             spawnTimer -= Time.deltaTime;
-        else if(spawnTimer < 0f)
+        else if (spawnTimer < 0f)
             spawnTimer = 0f;
 
         // KH - Spawn NPC once timer reaches zero.
-        if(spawnTimer == 0f)
+        if (spawnTimer == 0f)
         {
             spawnTimer = spawnTime;
             Spawn();
@@ -66,7 +64,7 @@ public class NpcSpawn : MonoBehaviour
         NpcController npcScript = n.GetComponent<NpcController>();
 
         // KH - Set the movement limit range for where the NPC chooses to move around.
-        npcScript.SetHorizontalMoveSpace(xMoveSpace.min, xMoveSpace.max);
-        npcScript.SetVerticalMoveSpace(yMoveSpace.min, yMoveSpace.max);
+        npcScript.SetHorizontalMoveSpace(xMoveSpace.Min(), xMoveSpace.Max());
+        npcScript.SetVerticalMoveSpace(yMoveSpace.Min(), yMoveSpace.Max());
     }
 }

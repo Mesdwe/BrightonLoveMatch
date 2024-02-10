@@ -1,13 +1,10 @@
 // KHOGDEN
+using TMPro;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] Text scoreDisplay;
-    [SerializeField] Text timeDisplay;
+    [SerializeField] TextMeshProUGUI scoreDisplay;
+    [SerializeField] TextMeshProUGUI timeDisplay;
 
     // KH - Called upon the first frame.
     void Start()
@@ -18,7 +15,7 @@ public class PlayerUI : MonoBehaviour
     // KH - Called upon every frame.
     void Update()
     {
-        //scoreDisplay = 
-        timeDisplay = Timer.instance.GetTime();
+        scoreDisplay.text = MatchManager.matchesMade.ToString();
+        //timeDisplay.text = TimeSpan.FromSeconds(Timer.instance.GetTime()).ToString("mm:ss");
     }
 }
