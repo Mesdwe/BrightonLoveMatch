@@ -25,17 +25,17 @@ public class MatchManager
 
     public static void HandleNpcShot(NPC npc)
     {
-        if (!NPCs.ContainsKey(npc.type))
+        if (!NPCs.ContainsKey(npc.type) && npc != null)
             NPCs.Add(npc.type, npc);
         else if (NPCs[npc.type] != npc)
         {
             // TODO: match successful event
             NPC other = NPCs[npc.type];
-            other.DestroyNpc();
-            matchesMade++;
-
             NPCs.Remove(npc.type);
+
+            other.DestroyNpc();
             npc.DestroyNpc();
+            matchesMade++;
         }
 
     }

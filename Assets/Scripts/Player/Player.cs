@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     private float arrowCooldown;
     [SerializeField] private Arrow arrow;
     [SerializeField] private Transform arrowSpawnTransform;
-
+    public event Action PlayerShoot;
     private void Update()
     {
         Move();
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         if (!shoot) return;
+        PlayerShoot?.Invoke();
         Arrow newArrow = Instantiate(arrow, arrowSpawnTransform);
         newArrow.transform.parent = null;
         newArrow.ShootArrow(arrowDirection);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public NpcType type;
-    public static event Action<NPC> OnNPCShot;
+    public event Action<NPC> OnNPCShot;
 
     private void Awake()
     {
@@ -31,7 +31,8 @@ public class NPC : MonoBehaviour
 
     public void DestroyNpc()
     {
-        Destroy(gameObject);
+        if (gameObject != null)
+            Destroy(gameObject);
     }
 
     private void OnDestroy()
