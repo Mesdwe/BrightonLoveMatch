@@ -16,6 +16,26 @@ public class NpcSpawn : MonoBehaviour
     [SerializeField][Range(0.001f, 60f)] float spawnTime = 10f;
     private float spawnTimer;
 
+    // KH - Range for movement space the NPC can move around.
+    [System.Serializable]
+    public class MoveSpace
+    {
+        [SerializeField] float min = -9f;
+        [SerializeField] float max = 9f;
+
+        public float Min()
+        {
+            return min;
+        }
+
+        public float Max()
+        {
+            return max;
+        }
+    }
+    [SerializeField] MoveSpace xMoveSpace = new MoveSpace();
+    [SerializeField] MoveSpace yMoveSpace = new MoveSpace();
+
     // KH - Called upon the first frame.
     void Start()
     {
@@ -43,5 +63,10 @@ public class NpcSpawn : MonoBehaviour
     void Spawn()
     {
         GameObject n = Instantiate(npcPrefab, transform.position, Quaternion.identity);
+        NpcController npcScript = n.GetComponent<NpcController>();
+
+        // KH - Set the movement limit range for where the NPC chooses to move around.
+        npcScript.SetHorizontalMoveSpace(xMoveSpace.min, xMoveSpace.max);
+        npcScript.SetVerticalMoveSpace(yMoveSpace.min, yMoveSpace.max);
     }
 }

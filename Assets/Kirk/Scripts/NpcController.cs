@@ -14,6 +14,29 @@ public class NpcController : MonoBehaviour
     [Header("NPC Statistics")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float scoreReward = 100f;
+    [SerializeField] float setNewDestinationTime = 5f;
+    private float setNewDestinationTimer;
+
+    // KH - Range for movement space the NPC can move around.
+    public class MoveSpace
+    {
+        private float min = -9f;
+        private float max = 9f;
+
+        public float Min
+        {
+            get { return min; }
+            set { min = value; }
+        }
+
+        public float Max
+        {
+            get { return max; }
+            set { max = value; }
+        }
+    }
+    private MoveSpace xMoveSpace = new MoveSpace();
+    private MoveSpace yMoveSpace = new MoveSpace();
 
     /*private enum Direction {north, east, south, west};
     private Direction facingDirection;*/
@@ -41,6 +64,24 @@ public class NpcController : MonoBehaviour
     {
         currentPos = transform.position;
         Move();
+
+        // KH - Decrease timer until it reaches zero.
+        if(setNewDestinationTimer > 0f)
+            setNewDestinationTimer -= Time.deltaTime;
+        else if(setNewDestinationTimer < 0f)
+            setNewDestinationTimer = 0f;
+        
+        // KH - Set a random destination for the NPC.
+        if(setNewDestinationTimer == 0f)
+        {
+            // KH - Reset the timer.
+            setNewDestinationTimer = setNewDestinationTime;
+
+            // KH - Set a new randomly made destination.
+            float x = Random.Range(xMoveSpace.min, xMoveSpace.max);
+            float y = Random.Range(yMoveSpace.min, yMoveSpace.max);
+            SetDestination(new Vector2(x, y));
+        }
     }
 
     // KH - Have the NPC move towards the target position.
@@ -73,5 +114,17 @@ public class NpcController : MonoBehaviour
     public void SetDestination(Vector2 newDestination)
     {
         destination = newDestination;
+    }
+
+    public void SetHorizontalMoveSpace(float min, float max)
+    {
+        xMoveSpace.min = min;
+        xMoveSpace.max = max;
+    }
+
+    public void SetVerticalMoveSpace(float min, float max)
+    {
+        yMoveSpace.min = min;
+        yMoveSpace.max = max;
     }
 }
