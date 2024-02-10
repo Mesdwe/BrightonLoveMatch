@@ -2,28 +2,65 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // level duration
-    // players[]
-    // npcs
-    // scores
+    public static LevelManager instance;
+
+    [SerializeField] GameObject[] players = new GameObject[];
+    [SerializeField] int score;
+    private bool levelFinish;
+
+    // KH - Called before 'void Start()'
+    void Awake()
+    {
+        instance = this;
+    }
 
     public void StartLevel()
     {
-        // start timer
-        // spawn players
-        // spawn npcs
-        // initialise player scores
+        // KH - Activate player gameobjects.
+        foreach(GameObject player in players)
+            player.SetActive(true);
+
+        // KH - Set the timer and make it go down.
+        Timer.instance.ResetTime();
+        Timer.instance.PauseTime(false);
+
+        ResetScore();
 
     }
 
     public void FinishLevel()
     {
-        // compare score
-        // get winner
+        levelFinish = true;
+        Timer.instance.PauseTime(true);
+        LevelFinishUI.instance.Display(true);
     }
 
     private void Update()
     {
-        // perhaps do count down here or in a coroutine
+        // KH - Finish level session when timer reaches zero.
+        if(Timer.instance.GetTime() == 0f && !IsLevelFinish())
+            FinishLevel();
+    }
+
+    // KH - Increase the player score.
+    public void AddScore(int increase)
+    {
+        score += increase;
+    }
+
+    // KH - Reset the player score back to zero.
+    public void ResetScore()
+    {
+        score = 0;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public bool IsLevelFinish()
+    {
+        return levelFinish;
     }
 }

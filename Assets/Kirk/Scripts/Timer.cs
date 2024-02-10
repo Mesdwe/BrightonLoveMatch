@@ -18,17 +18,11 @@ public class Timer : MonoBehaviour
         defaultTime = time;
     }
 
-    // KH - Called upon the first frame.
-    void Start()
-    {
-
-    }
-
     // KH - Called upon every frame.
     void Update()
     {
         // KH - Decrease timer so long as it's not paused.
-        if(pauseTime)
+        if(!pauseTime)
         {
             if(time > 0f)
                 time -= Time.deltaTime;
