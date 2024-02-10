@@ -16,6 +16,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] float scoreReward = 100f;
     [SerializeField] float setNewDestinationTime = 5f;
     private float setNewDestinationTimer;
+    private bool stopRandomisedMovement;
 
     // KH - Range for movement space the NPC can move around.
     public class MoveSpace
@@ -72,7 +73,7 @@ public class NpcController : MonoBehaviour
             setNewDestinationTimer = 0f;
 
         // KH - Set a random destination for the NPC.
-        if (setNewDestinationTimer == 0f)
+        if (setNewDestinationTimer == 0f && !stopRandomisedMovement)
         {
             setNewDestinationTimer = setNewDestinationTime;
             SetRandomDestination();
@@ -130,5 +131,15 @@ public class NpcController : MonoBehaviour
     {
         yMoveSpace.Min = min;
         yMoveSpace.Max = max;
+    }
+
+    public void StopRandomisedMovement(bool toggle)
+    {
+        stopRandomisedMovement = toggle;
+    }
+
+    public bool OnRightSide()
+    {
+        return transform.position.x > 0f;
     }
 }
