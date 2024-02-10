@@ -1,9 +1,7 @@
 // KHOGDEN
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelFinishUI : MonoBehaviour
 {
@@ -16,7 +14,7 @@ public class LevelFinishUI : MonoBehaviour
     void Awake()
     {
         instance = this;
-        container = transform.GetChild(0);
+        container = transform.GetChild(0).gameObject;
     }
 
     // KH - Toggle whether the finish UI is displayed or not.
@@ -24,7 +22,7 @@ public class LevelFinishUI : MonoBehaviour
     {
         container.SetActive(toggle);
 
-        if(toggle)
+        if (toggle)
             scoreDisplay.text = LevelManager.instance.GetScore().ToString();
     }
 

@@ -4,7 +4,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    [SerializeField] GameObject[] players = new GameObject[];
+    [SerializeField] GameObject[] players = new GameObject[2];
     [SerializeField] int score;
     private bool levelFinish;
 
@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         // KH - Activate player gameobjects.
-        foreach(GameObject player in players)
+        foreach (GameObject player in players)
             player.SetActive(true);
 
         // KH - Set the timer and make it go down.
@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         // KH - Finish level session when timer reaches zero.
-        if(Timer.instance.GetTime() == 0f && !IsLevelFinish())
+        if (Timer.instance.GetTime() == 0f && !IsLevelFinish())
             FinishLevel();
     }
 
