@@ -5,8 +5,8 @@ public class Player : MonoBehaviour
     // controller
     // sprite
     // score
-    public int direction;
-    [HideInInspector] public int velocity;
+    public int arrowDirection;
+    [HideInInspector] public int moveDirection;
     public float speed;
     [Header("Arrow related")]
     public bool shoot;
@@ -22,17 +22,17 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        gameObject.transform.position += speed * velocity * Vector3.up * Time.deltaTime;
+        gameObject.transform.position += speed * moveDirection * Vector3.up * Time.deltaTime;
+        // TODO: prevent going off screen
     }
+
     public void Shoot()
     {
         if (!shoot) return;
-        // instantiate arrow
         Arrow newArrow = Instantiate(arrow, arrowSpawnTransform);
         newArrow.transform.parent = null;
-        newArrow.ShootArrow(direction);
-        Destroy(newArrow.gameObject, 3f);
+        newArrow.ShootArrow(arrowDirection);
+
         shoot = false;
-        // shoot in a direction
     }
 }

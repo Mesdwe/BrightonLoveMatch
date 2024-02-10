@@ -34,23 +34,21 @@ public class PlayerInput : MonoBehaviour
     {
         if (Input.GetKeyDown(upKey))
         {
-            player.velocity = 1;
+            player.moveDirection = 1;
         }
         if (Input.GetKeyDown(downKey))
         {
-            player.velocity = -1;
+            player.moveDirection = -1;
         }
         if (Input.GetKeyUp(upKey) || Input.GetKeyUp(downKey))
         {
-            player.velocity = 0;
+            player.moveDirection = 0;
         }
 
         if (Input.GetKeyDown(shootKey))
         {
             player.shoot = true;
         }
-        //
-
     }
 }
 
