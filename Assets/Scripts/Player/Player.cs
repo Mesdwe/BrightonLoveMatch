@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,15 +11,15 @@ public class Player : MonoBehaviour
     [HideInInspector] public int moveDirection;
     public float speed;
     [Header("Arrow related")]
-    public bool shoot;
-    private float arrowCooldown;
+    private bool canFire = true;
+    [SerializeField] private float arrowCooldown = 2f;
     [SerializeField] private Arrow arrow;
     [SerializeField] private Transform arrowSpawnTransform;
     public event Action PlayerShoot;
+
     private void Update()
     {
         Move();
-        Shoot();
     }
 
     private void Move()
@@ -27,14 +28,21 @@ public class Player : MonoBehaviour
         // TODO: prevent going off screen
     }
 
+    IEnumerator ArrowCooldown()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(arrowCooldown); // 等待冷却时间
+        canFire = true; // 冷却完成，可以再次射击
+    }
+
     public void Shoot()
     {
-        if (!shoot) return;
+        if (!canFire) return;
         PlayerShoot?.Invoke();
         Arrow newArrow = Instantiate(arrow, arrowSpawnTransform);
         newArrow.transform.parent = null;
         newArrow.ShootArrow(arrowDirection);
+        StartCoroutine(ArrowCooldown());
 
-        shoot = false;
     }
 }

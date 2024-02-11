@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class ArrowSprite : MonoBehaviour
 {
+    private Arrow arrow;
+
+    private void Awake()
+    {
+        arrow = transform.parent.gameObject.GetComponent<Arrow>();
+    }
     private void OnBecameInvisible()
     {
-        Destroy(transform.parent.gameObject);
+        if (arrow != null)
+        {
+            arrow.ArrowMiss?.Invoke();
+        }
     }
 }

@@ -16,6 +16,6 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         scoreDisplay.text = MatchManager.matchesMade.ToString();
-        //timeDisplay.text = TimeSpan.FromSeconds(Timer.instance.GetTime()).ToString("mm:ss");
+        timeDisplay.text = Timer.instance.GetTime().ToString();
     }
 }

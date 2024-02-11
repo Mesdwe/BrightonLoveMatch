@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(shootKey))
         {
-            player.shoot = true;
+            player.Shoot();
         }
     }
 }
