@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8454081039662725985}
   - component: {fileID: 889261474314250482}
-  - component: {fileID: 329687800483683353}
+  - component: {fileID: 1707484174686546724}
   m_Layer: 0
   m_Name: Square
   m_TagString: NPC
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &329687800483683353
+--- !u!61 &1707484174686546724
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,10 +117,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.21133333}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -142,10 +142,10 @@ GameObject:
   - component: {fileID: 7869134748286378883}
   - component: {fileID: 6145085755175741364}
   - component: {fileID: 7875480367963101734}
-  - component: {fileID: -7551205502448561059}
-  - component: {fileID: -7486712551324809226}
+  - component: {fileID: -7992408520477689839}
+  - component: {fileID: -3991398428687299603}
   m_Layer: 0
-  m_Name: Npc 2
+  m_Name: Npc 4
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8e6667ccf72e84db0c45a55a0e9b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
 --- !u!114 &6145085755175741364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  scoreReward: 200
+  scoreReward: 500
   behaviourState: 0
-  setNewDestinationTime: 5
-  dazzledLastingTime: 5
+  setNewDestinationTime: 2
+  dazzledLastingTime: 3
   sadTime: 10
 --- !u!50 &7875480367963101734
 Rigidbody2D:
@@ -225,7 +225,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &-7551205502448561059
+--- !u!61 &-7992408520477689839
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,7 +270,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7486712551324809226
+--- !u!114 &-3991398428687299603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,5 +283,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 8d1593591b2f74f49ba0d9d0c108ed1c, type: 3}
-  - {fileID: 21300000, guid: 18c55c2296bd7c04f8c5a04e04e3869b, type: 3}
+  - {fileID: 21300000, guid: 9b099f6859f356a48be41044d3ffa28a, type: 3}
+  - {fileID: 21300000, guid: 519a6b9f9c79b4a499f0793b05d585ec, type: 3}

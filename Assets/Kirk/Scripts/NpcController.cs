@@ -1,6 +1,4 @@
 // KHOGDEN
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -31,7 +29,7 @@ public class NpcController : MonoBehaviour
     private float honeymoonTimer;
     private bool rewardedScore;
     private NpcController loveMatch;
-
+    private NPCVisual npcVisual;
     // KH - Range for movement space the NPC can move around.
     public class MoveSpace
     {
@@ -65,6 +63,7 @@ public class NpcController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         npcScript = GetComponent<NPC>();
+        npcVisual = GetComponent<NPCVisual>();
         sadTimer = sadTime;
         honeymoonTimer = honeymoonTime;
     }
@@ -106,7 +105,7 @@ public class NpcController : MonoBehaviour
                 sadTimer = 0f;
         }
 
-        if(behaviourState == BehaviourState.dazzled)
+        if (behaviourState == BehaviourState.dazzled)
         {
             // KH - Decrease timer for next time to search for love partner.
             if (matchSearchTimer > 0f)
@@ -115,21 +114,21 @@ public class NpcController : MonoBehaviour
                 matchSearchTimer = 0f;
 
             // KH - Attempt to find a love match for this NPC.
-            if(matchSearchTimer == 0f)
+            if (matchSearchTimer == 0f)
             {
                 matchSearchTimer = matchSearchTime;
                 SetLoveMatch(FindLoveMatch());
             }
 
             // KH - Check to see that this NPC has found a love match.
-            if(loveMatch != null)
+            if (loveMatch != null)
                 loveMatch.SetLoveMatch(this);
         }
 
-        if(behaviourState == BehaviourState.inLove)
+        if (behaviourState == BehaviourState.inLove)
         {
             // KH - Reward score for matching couples together.
-            if(!rewardedScore)
+            if (!rewardedScore)
             {
                 rewardedScore = true;
                 LevelManager.instance.AddScore(scoreReward);
@@ -148,7 +147,7 @@ public class NpcController : MonoBehaviour
                 honeymoonTimer = 0f;
 
             // KH - Once the timer is at zero, have the couples leave for their honeymoon.
-            if(honeymoonTimer == 0f)
+            if (honeymoonTimer == 0f)
             {
                 NpcBehaviourState = BehaviourState.honeymoon;
                 loveMatch.NpcBehaviourState = BehaviourState.honeymoon;
@@ -162,8 +161,9 @@ public class NpcController : MonoBehaviour
         if (sadTimer == 0f)
             NpcBehaviourState = BehaviourState.sad;
 
-        if(NpcBehaviourState == BehaviourState.sad)
+        if (NpcBehaviourState == BehaviourState.sad)
         {
+            npcVisual.SetNpcSprite(BehaviourState.sad);
             if (OnRightSide())
                 SetDestination(new Vector2(100f, 0f));
             else
@@ -175,13 +175,13 @@ public class NpcController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // KH - Make the NPC in a dazzled state after being shot.
-        if(collision.gameObject.CompareTag("Arrow") && behaviourState == BehaviourState.patrol)
+        if (collision.gameObject.CompareTag("Arrow") && behaviourState == BehaviourState.patrol)
         {
             // KH - Make the NPC dazzled and freeze in place.
             NpcBehaviourState = BehaviourState.dazzled;
             SetDestination(currentPos);
             sadTimer = dazzledLastingTime;
-
+            npcVisual.SetNpcSprite(NpcBehaviourState);
             // KH - Destroy the cupid arrow after hit.
             Destroy(collision.gameObject);
         }
@@ -230,8 +230,11 @@ public class NpcController : MonoBehaviour
     {
         loveMatch = otherNpc;
 
-        if(otherNpc != null)
+        if (otherNpc != null)
+        {
             behaviourState = BehaviourState.inLove;
+            npcVisual.SetNpcSprite(behaviourState);
+        }
     }
 
     // KH - Method to find a love match for this NPC.
@@ -286,4 +289,5 @@ public class NpcController : MonoBehaviour
     {
         return transform.position.x > 0f;
     }
+
 }

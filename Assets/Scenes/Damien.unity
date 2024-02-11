@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 180
-  pauseTime: 1
+  pauseTime: 0
 --- !u!4 &483429188
 Transform:
   m_ObjectHideFlags: 0
@@ -1010,7 +1010,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 88063f90eb3f3624e93497bc5bdddb2c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.228
   m_Pitch: 1
   Loop: 1
   Mute: 0

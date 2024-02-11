@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
     IEnumerator ArrowCooldown()
     {
         canFire = false;
-        yield return new WaitForSeconds(arrowCooldown); // 等待冷却时间
-        canFire = true; // 冷却完成，可以再次射击
+        yield return new WaitForSeconds(arrowCooldown);
+        canFire = true;
     }
 
     public void Shoot()
