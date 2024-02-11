@@ -6,16 +6,11 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreDisplay;
     [SerializeField] TextMeshProUGUI timeDisplay;
 
-    // KH - Called upon the first frame.
-    void Start()
-    {
-
-    }
-
     // KH - Called upon every frame.
     void Update()
     {
-        scoreDisplay.text = MatchManager.matchesMade.ToString();
-        timeDisplay.text = Timer.instance.GetTime().ToString();
+        //scoreDisplay.text = MatchManager.matchesMade.ToString();
+        scoreDisplay.text = LevelManager.instance.GetScore().ToString();
+        timeDisplay.text = Timer.instance.TimeDisplay();
     }
 }

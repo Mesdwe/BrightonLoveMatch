@@ -46,4 +46,14 @@ public class Timer : MonoBehaviour
     {
         return time;
     }
+
+    // KH - Method to convert the time float into a readable time display.
+    public string TimeDisplay()
+    {
+        int min = Mathf.FloorToInt(GetTime() / 60f);
+        int sec = Mathf.FloorToInt(GetTime() % 60f);
+        int msec = Mathf.FloorToInt(GetTime() * 1000f);
+        msec = msec % 1000;
+        return string.Format("{0:00}:{1:00}:{2:000}", min, sec, msec);
+    }
 }

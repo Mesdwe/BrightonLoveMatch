@@ -33,8 +33,9 @@ public class MatchManager
             NPC other = NPCs[npc.type];
             NPCs.Remove(npc.type);
 
-            other.DestroyNpc();
-            npc.DestroyNpc();
+            // KH - Commented these out for now, hope that's okay!
+            //other.DestroyNpc();
+            //npc.DestroyNpc();
             matchesMade++;
         }
 

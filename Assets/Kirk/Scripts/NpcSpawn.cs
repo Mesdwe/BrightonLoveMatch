@@ -14,6 +14,7 @@ public class NpcSpawn : MonoBehaviour
     [SerializeField] GameObject[] npcPrefabs;
     [SerializeField][Range(0.001f, 60f)] float spawnTime = 10f;
     [SerializeField][Range(0, 12)] int maxSpawnCapacity = 5;
+    [SerializeField] bool disableSpawn;
     private float spawnTimer;
 
     // KH - Range for movement space the NPC can move around.
@@ -39,26 +40,23 @@ public class NpcSpawn : MonoBehaviour
     // KH - List used to track the NPCs this spawner has instantiated.
     private List<GameObject> npcs = new List<GameObject>();
 
-    // KH - Called upon the first frame.
-    void Start()
-    {
-
-    }
-
     // KH - Called upon every frame.
     void Update()
     {
-        // KH - Continously decrease timer until it reaches zero.
-        if (spawnTimer > 0f)
-            spawnTimer -= Time.deltaTime;
-        else if (spawnTimer < 0f)
-            spawnTimer = 0f;
-
-        // KH - Spawn NPC once timer reaches zero.
-        if (spawnTimer == 0f && npcs.Count < maxSpawnCapacity)
+        if (!disableSpawn)
         {
-            spawnTimer = spawnTime;
-            Spawn();
+            // KH - Continously decrease timer until it reaches zero.
+            if (spawnTimer > 0f)
+                spawnTimer -= Time.deltaTime;
+            else if (spawnTimer < 0f)
+                spawnTimer = 0f;
+
+            // KH - Spawn NPC once timer reaches zero.
+            if (spawnTimer == 0f && npcs.Count < maxSpawnCapacity)
+            {
+                spawnTimer = spawnTime;
+                Spawn();
+            }
         }
     }
 
@@ -81,8 +79,26 @@ public class NpcSpawn : MonoBehaviour
     // KH - Destroy an NPC gameobject from the scene and remove them from the list.
     public void DestroyNpc(GameObject npc)
     {
-        npcs.Remove(npc);
+        int i = npcs.IndexOf(npc);
+        npcs.RemoveAt(i);
         Destroy(npc);
+    }
+
+    // KH - Make all NPCs that spawned from this spawner sad.
+    public void SaddenNpcs()
+    {
+        foreach(GameObject npc in npcs)
+        {
+            NpcController npcScript = npc.GetComponent<NpcController>();
+
+            if (npcScript.NpcBehaviourState == NpcController.BehaviourState.patrol || npcScript.NpcBehaviourState == NpcController.BehaviourState.dazzled)
+                npcScript.NpcBehaviourState = NpcController.BehaviourState.sad;
+        }
+    }
+
+    public void SetDisableSpawn(bool toggle)
+    {
+        disableSpawn = toggle;
     }
 
     // KH - Method to see if this spawner contains the NPC specified in the parameter.
