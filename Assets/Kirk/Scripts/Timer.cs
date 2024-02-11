@@ -1,7 +1,5 @@
 // KHOGDEN
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Timer : MonoBehaviour
 {
@@ -22,11 +20,11 @@ public class Timer : MonoBehaviour
     void Update()
     {
         // KH - Decrease timer so long as it's not paused.
-        if(!pauseTime)
+        if (!pauseTime)
         {
-            if(time > 0f)
+            if (time > 0f)
                 time -= Time.deltaTime;
-            else if(time < 0f)
+            else if (time < 0f)
                 time = 0f;
         }
     }
@@ -54,6 +52,6 @@ public class Timer : MonoBehaviour
         int sec = Mathf.FloorToInt(GetTime() % 60f);
         int msec = Mathf.FloorToInt(GetTime() * 1000f);
         msec = msec % 1000;
-        return string.Format("{0:00}:{1:00}:{2:000}", min, sec, msec);
+        return string.Format("{0:00}:{1:00}", min, sec);
     }
 }
