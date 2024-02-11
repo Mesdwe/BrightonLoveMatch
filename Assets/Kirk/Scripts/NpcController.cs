@@ -182,6 +182,7 @@ public class NpcController : MonoBehaviour
             SetDestination(currentPos);
             sadTimer = dazzledLastingTime;
             npcVisual.SetNpcSprite(NpcBehaviourState);
+
             // KH - Destroy the cupid arrow after hit.
             Destroy(collision.gameObject);
         }

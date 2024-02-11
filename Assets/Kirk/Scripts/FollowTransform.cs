@@ -1,7 +1,5 @@
 // KHOGDEN
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class FollowTransform : MonoBehaviour
 {
@@ -14,8 +12,8 @@ public class FollowTransform : MonoBehaviour
     // KH - Called upon every frame.
     void Update()
     {
-        if(follow != null)
-            transform.position = new Vector2(x, y);
+        if (follow != null)
+            transform.position = new Vector2(follow.position.x + x, follow.position.y + y);
         else
             Destroy(gameObject);
     }

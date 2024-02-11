@@ -285,3 +285,5 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 9b099f6859f356a48be41044d3ffa28a, type: 3}
   - {fileID: 21300000, guid: 519a6b9f9c79b4a499f0793b05d585ec, type: 3}
+  markedVisualsObj: {fileID: 2013113510978889713, guid: 1608965dfc5b20f4095804ddbb40f612, type: 3}
+  loveVisualsObj: {fileID: 2946283893529135512, guid: 1704dd16e805ff8478f533f37d4ad96c, type: 3}
