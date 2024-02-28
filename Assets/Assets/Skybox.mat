@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FrontTex:
-        m_Texture: {fileID: 2800000, guid: d8989c76a72e7b54c8c037fe1ae5f580, type: 3}
+        m_Texture: {fileID: 2800000, guid: d702d3e7360db4d4ea1c8cdb13326276, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LeftTex:

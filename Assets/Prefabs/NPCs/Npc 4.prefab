@@ -196,7 +196,7 @@ MonoBehaviour:
   scoreReward: 500
   behaviourState: 0
   setNewDestinationTime: 2
-  dazzledLastingTime: 3
+  dazzledLastingTime: 4.8
   sadTime: 10
 --- !u!50 &7875480367963101734
 Rigidbody2D:
